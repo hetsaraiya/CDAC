@@ -1,6 +1,6 @@
 import json
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -29,15 +29,16 @@ def login(request):
     
 def bookapp(request):
     if request.method == 'POST':
-        appointment = Appointment
+        appointment = Appointment()
         appointment.patient_details = request.POST.get('patient_details')
         appointment.doctor_details = request.POST.get('doctor_name')
         appointment.patient_contact = request.POST.get('patient_contact')
         appointment.patient_email = request.POST.get('patient_email')
-        appointment.appointment_date = request.POST.get('date')
-        appointment.appointment_time = request.POST.get('time')
+        appointment.appointment_date = request.POST.get('datebackend')
+        appointment.appointment_time = request.POST.get('timebackend')
         appointment.description = request.POST.get('description')
         appointment.save()
+        return redirect('appointment')
 
 def doctors_list(request):
     if request.method == 'GET':

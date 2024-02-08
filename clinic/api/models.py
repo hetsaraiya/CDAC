@@ -33,6 +33,7 @@ class Patient(models.Model):
 
 class Appointment(models.Model):
     patient_details = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True)
+    
     patient_contact = PhoneNumberField(null=False, blank=False)
     patient_email = models.EmailField()
     doctor_details = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True)
@@ -41,4 +42,4 @@ class Appointment(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return self.patient_details.name
+        return self.patient_email
