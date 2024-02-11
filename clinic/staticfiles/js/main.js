@@ -1,4 +1,5 @@
-(function ($) {
+( 
+    function ($) {
     "use strict";
 
     // Spinner
@@ -47,13 +48,7 @@
     });
 
 
-    // Date and time picker
-    $('.date').datetimepicker({
-        format: 'L'
-    });
-    $('.time').datetimepicker({
-        format: 'LT'
-    });
+    
 
 
     // Header carousel
@@ -91,6 +86,13 @@
                 items:2
             }
         }
+    });
+    // Date and time picker
+    $('.date').datetimepicker({
+        format: 'L'
+    });
+    $('.time').datetimepicker({
+        format: 'LT'
     });
 
     

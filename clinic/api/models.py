@@ -33,13 +33,15 @@ class Patient(models.Model):
 
 class Appointment(models.Model):
     patient_details = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True)
+    patient_name= models.CharField(max_length=50, null=True, blank=True)
     
     patient_contact = PhoneNumberField(null=False, blank=False)
     patient_email = models.EmailField()
-    doctor_details = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True)
-    appointment_date = models.DateField(auto_now=False, auto_now_add=False)
-    appointment_time = models.TimeField()
+    doctor_details = models.CharField(max_length=30)
+    appointment_date = models.CharField(max_length=10)
+    appointment_time = models.CharField(max_length=10)
     description = models.TextField()
+    time=models.TimeField(auto_now=True)
 
     def __str__(self):
         return self.patient_email

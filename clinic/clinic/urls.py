@@ -35,5 +35,8 @@ urlpatterns = [
     path("appointment/",views.appointment,name="appointment"),
     path("registration/",views.registeration,name="registeration"),
     path("login/",views.login,name="login"),
+    path("detail/",views.detail,name="detail"),
+    # path("newindex/",views.newindex,name="newindex"),
+    # path("base/",views.base,name="base"),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
