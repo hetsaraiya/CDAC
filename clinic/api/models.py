@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -45,3 +46,24 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.patient_email
+
+class Feedback(models.Model):
+    GENDER_CHOICES = {
+        "MALE" : "Male",
+        "FEMALE" : "Female",
+    }
+    RATE_CHOICES = {
+        "BAD" : "Bad",
+        "GOOD" : "Good",
+        "EXCELLENT" : "Excellent",
+    }
+    title  = models.CharField(max_length=30, default="")
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    date = models.DateField(default=datetime.datetime.now)
+    gender = models.CharField(max_length=20, default="", choices=GENDER_CHOICES)
+    rate = models.CharField(max_length=20, default="", choices=RATE_CHOICES)
+    comment = models.TextField()
+    recieve = models.BooleanField(default=False)
+    contact = models.BooleanField(default=False)
+    def __str__(self):
+        return self.title

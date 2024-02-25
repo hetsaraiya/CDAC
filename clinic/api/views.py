@@ -92,3 +92,27 @@ def services_list(request):
         ser_list = Services.objects.all()
         data = serializers.serialize("json", ser_list)
         return HttpResponse(data, content_type="application/json")
+    
+def register_doctor(request):
+    if request.method == 'POST':
+        doctor = Doctor()
+        doctor.name = request.POST.get('name')
+        doctor.speciality = request.POST.get('speciality')
+        doctor.qualification = request.POST.get('qualification')
+        doctor.profile = request.FILES.get('profile')
+        doctor.address = request.POST.get('address')
+        doctor.contact = request.POST.get('contact')
+        doctor.email = request.POST.get('email')
+        doctor.save()
+
+def feedback(request):
+    if request.method == 'POST':
+        feedback = Feedback()
+        feedback.title = request.POST.get('title')
+        feedback.doctor = request.POST.get('doctor')
+        feedback.gender = request.POST.get('gender')
+        feedback.rate = request.POST.get('rate')
+        feedback.comment = request.POST.get('comment')
+        feedback.recieve = request.POST.get('recieve')
+        feedback.contact = request.POST.get('contact')
+        feedback.save()
