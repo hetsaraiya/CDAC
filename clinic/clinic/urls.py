@@ -42,5 +42,7 @@ urlpatterns = [
     path("admin-panel/",views.admin,name="admin"),
     path("admin-registration/",views.adminreg,name="admin-registration"),
     path("admin-feedback/",views.adminfeedback,name="admin-feedback"),
+    path("forgot/",views.forgot,name="forgot"),
+    path("admin-forgot/",views.adminforgot,name="admin-forgot"),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

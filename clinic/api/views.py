@@ -122,3 +122,41 @@ def feedback(request):
 
         feedback.save()
         return redirect('home')
+    
+def forgotpassword(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        pass1 = request.POST.get('pass')
+        repass1= request.POST.get('number')
+        
+
+        if pass1 !=repass1:
+            return HttpResponse("password not match go back and re write password")
+
+        user = Patient.objects.filter(email=email).first()
+
+        if user:
+            user.password=pass1
+            user.save()
+            return redirect('login')
+        else:
+            return HttpResponse("User not found go back and regiter your self again with new credentials")    
+        
+def adminforgotpassword(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        pass1 = request.POST.get('pass')
+        repass1= request.POST.get('number')
+        
+
+        if pass1 !=repass1:
+            return HttpResponse("password not match go back and re write password")
+
+        user = Patient.objects.filter(email=email).first()
+
+        if user:
+            user.password=pass1
+            user.save()
+            return redirect('admin')
+        else:
+            return HttpResponse("User not found go back and regiter your self again with new credentials")            

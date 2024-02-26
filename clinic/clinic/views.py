@@ -70,3 +70,9 @@ def adminreg(request):
 def adminfeedback(request):
     feedbacks=Feedback.objects.all()
     return render(request,'admin-feedback.html',{'feedbacks': feedbacks})
+
+def adminforgot(request):
+    return render(request,'admin-forgot.html')
+
+def forgot(request):
+    return render(request,'forgotpassword.html')

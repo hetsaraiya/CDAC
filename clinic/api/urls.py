@@ -12,4 +12,6 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("register_doctor/", views.register_doctor, name="register_doctor"),
     path("feedback/", views.feedback, name="feedback"),
+    path("forgotpassword/", views.forgotpassword, name="forgotpassword"),
+    path("adminforgotpassword/", views.adminforgotpassword, name="adminforgotpassword"),
 ]
