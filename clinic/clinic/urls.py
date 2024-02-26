@@ -39,8 +39,8 @@ urlpatterns = [
     path("doctor/",views.doctor,name="doctor"),
     path("payment/",views.payment,name="payment"),
     path("feedback/",views.feedback,name="feedback"),
-    path("admin/",views.admin,name="admin"),
-    # path("newindex/",views.newindex,name="newindex"),
-    # path("base/",views.base,name="base"),
+    path("admin-panel/",views.admin,name="admin"),
+    path("admin-registration/",views.adminreg,name="admin-registration"),
+    path("admin-feedback/",views.adminfeedback,name="admin-feedback"),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

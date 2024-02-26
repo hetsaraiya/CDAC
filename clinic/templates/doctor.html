@@ -14,101 +14,65 @@
 	<body>
 		<!-- Register Form -->
 		<div class="form-wrapper"> <!-- Form-wrapper only for positioning -->
-			<form action="/php" method="post" class="fcorn-register container">
-				 <h1><p class="register-info"> Doctor form </p> </h1>
+			<form action="{% url "api:register_doctor" %}" method="post" class="fcorn-register container" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h1><p class="register-info"> Doctor form </p></h1>
 				<div class="row">
 					<label for="event_name" class="form-label">Name:</label> 
-					<p class="col-md-6"><input type="text" placeholder="First Name" required></p>
-					<label for="event_name" class="form-label">last Name:</label> 
-					<p class="col-md-6"><input type="text" placeholder="Last Name" required></p>
+					<p class="col-md-6"><input type="text" name="name" placeholder="First Name" required></p>
+					<label for="event_name" class="form-label">Last Name:</label> 
+					<p class="col-md-6"><input type="text" name="last_name" placeholder="Last Name" required></p>
 				</div>
-				 <label for="event_name" class="form-label">Email:</label> 
-				 <p><input type="email" placeholder="Email Address" required>
-				   <!-- <span class="extern-type">We'll keep this private.</span> -->
-				</p>
-				<h3> <label for="event_name" class="form-label">password:</label> </h3>
-				<p><input type="password" placeholder="Password" required>
-					<!-- <span class="extern-type">Atleast 8 characters long.</span>  -->
-				</p>
-				 <label for="event_name" class="form-label">Verify password:</label> 
-				<p><input type="password" placeholder="Verify Password" required></p>
-				<div class="col-md-6">  
-					<h3>   <label for="event_date" class="form-label">Date:</label>
-					  <input type="date" class="form-control" name="event_date" id="event_date"/>
-					</div> <br>
-				  </div>
-				<!-- <div class="row">
-					
-					<p class="col-md-4"><input type="text" placeholder="Date (dd)" required></p>
-					<p class="col-md-4"><input type="text" placeholder="Month (mm)" required></p>
-					<p class="col-md-4"><input type="text" placeholder="Year (yyyy)" required></p>
-				</div> -->
+				<label for="email" class="form-label">Email:</label> 
+				<p><input type="email" name="email" placeholder="Email Address" required></p>
+				<label for="contact_no" class="form-label">Contact No:</label> 
+				<p><input type="phone" name="contact" placeholder="Phone No" required></p>
+				<label for="qualification" class="form-label">Qualification:</label> 
+				<p><input type="text" name="qualification" placeholder="Qualification" required></p>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="event_date" class="form-label">Date:</label>
+						<input type="date" class="form-control" name="event_date" id="event_date"/>
+					</div>
+				</div>
 				<div class="row">
 					<p class="col-md-6 city-wrap">
-						<label for="event_date" class="form-label">City:</label>
-						<select>
-							<option value="0" selected disabled>City</option>
-							<option value="1">Gandhinagar</option>
-							<option value="1">Ahmdabad</option>
-							<option value="1">Surat</option>
-							<option value="1">Rajkot</option>
+						<label for="city" class="form-label">City:</label>
+						<select name="city" id="city">
+							<option value="none" selected disabled>City</option>
+							<option value="Gandhinagar">Gandhinagar</option>
+							<option value="Ahmedabad">Ahmedabad</option>
+							<option value="Surat">Surat</option>
+							<option value="Rajkot">Rajkot</option>
 						</select>
 					</p>
 					<p class="col-md-6 country-wrap">
-						<!-- Add more country name -->
-						<label for="event_date" class="form-label">Country:</label>
-						<select>
-							<option value="0" selected disabled>Country</option>
-							<option value="1">India</option>
-							<option value="2">Canada</option>
-							<option value="2">USA</option>
-							<option value="2">UK</option>
-					    </select>
-					</p>
-          <p class="col-md-6 specialty-wrap">
-			<label for="event_date" class="form-label">Specialty:</label>
-						<select>
-							<option value="0" selected disabled>Specialty</option>
-							<option value="1">cardiology</option>
-							<option value="1">pulmonary</option>
-							<option value="1">Neurology</option>
-							<option value="1">Orthopedics</option>
-							<option value="1">Dental surgery</option>
-							<option value="1">Loboratory</option>
+						<label for="country" class="form-label">Country:</label>
+						<select name="country" id="country">
+							<option value="none" selected disabled>Country</option>
+							<option value="India">India</option>
+							<option value="Canada">Canada</option>
+							<option value="USA">USA</option>
+							<option value="UK">UK</option>
 						</select>
-            <!-- <p class="col-md-6 language-wrap"> 
-						<select>
-							<option value="0" selected disabled>Language</option>
-							<option value="1">English</option>
-
-						</select> -->
-               <!-- <span class="extern-type">Proficient languages.</span>
-					</p> -->
-          <!-- <p class="col-md-4"><input type="text" placeholder="Medical school" required><span class="extern-type"></p>
-          
-          <p class="col-md-4"><input type="text" placeholder="Medical ID" required></p>
-           -->
-          
-          
-          
-          <!-- <p class="col-md-6"><form action="upload.php" method="post" enctype="multipart/form-data">
-            Upload your medical ID:
-              <input type="file" name="fileToUpload" id="fileToUpload">
-              <input type="submit" value="Upload Image" name="submit" required>
-           </p>  -->
-          
-          
-          <!-- <p class="col-md-6"><form action="upload.php" method="post" enctype="multipart/form-data">
-            Upload your personal photo:
+					</p>
+					<p class="col-md-6 specialty-wrap">
+						<label for="specialty" class="form-label">Specialty:</label>
+						<select name="specialty" id="specialty">
+							<option value="0">Specialty</option>
+							{% for service in services %}
+								<option value="{{ service.speciality_title }}">{{ service.speciality_title }}</option>
+							{% endfor %}
+						</select>
+					</p>
+					<p class="col-md-6 image-wrap">
+						<label for="image" class="form-label">Choose Image:</label>
+						<input type="file" name="image" accept="image/*">
+					</p>
+				</div>
+				<p class="register-submit"><input type="submit" value="Register Now"></p>
+			</form>
 			
-    		  <input type="file" name="fileToUpload" id="fileToUpload">
-              <input type="submit" value="Upload Image" name="submit" required>
-	
-              <span class="extern-type">Professional clothing required.</span> 
-           </p>
-           -->
-      
-	<p class="register-submit"><input type="submit" value="Register Now"></p>
 
 
 

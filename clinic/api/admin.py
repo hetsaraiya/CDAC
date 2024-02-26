@@ -17,9 +17,14 @@ class AppointmentAdmin(ExportActionMixin, admin.ModelAdmin):
 
 class ServicesAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ('id','speciality_title', 'speciality_description')
-    search_fields = ['id','speciality_title', 'speciality_description']            
+    search_fields = ['id','speciality_title', 'speciality_description']     
+
+class FeedbackAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ('id','title', )
+    search_fields = ['id','title', ]           
 
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(Services, ServicesAdmin)
+admin.site.register(Feedback, FeedbackAdmin)

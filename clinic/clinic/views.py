@@ -51,13 +51,22 @@ def base(request):
     return render(request,'base.html')
 
 def doctor(request):
-    return render(request,'doctor.html')
+    services=Services.objects.all()
+    return render(request,'doctor.html',{'services':services})
 
 def payment(request):
     return render(request,'payment.html')
 
 def feedback(request):
-    return render(request,'feedback.html')
+    doctors_list=Doctor.objects.all()
+    return render(request,'feedback.html',{'doctors': doctors_list})
 
 def admin(request):
-    return render(request,'admin.html')
+    return render(request,'adminlogin.html')
+
+def adminreg(request):
+    return render(request,'adminreg.html')
+
+def adminfeedback(request):
+    feedbacks=Feedback.objects.all()
+    return render(request,'admin-feedback.html',{'feedbacks': feedbacks})

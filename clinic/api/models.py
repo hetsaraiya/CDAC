@@ -48,20 +48,12 @@ class Appointment(models.Model):
         return self.patient_email
 
 class Feedback(models.Model):
-    GENDER_CHOICES = {
-        "MALE" : "Male",
-        "FEMALE" : "Female",
-    }
-    RATE_CHOICES = {
-        "BAD" : "Bad",
-        "GOOD" : "Good",
-        "EXCELLENT" : "Excellent",
-    }
+   
     title  = models.CharField(max_length=30, default="")
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.datetime.now)
-    gender = models.CharField(max_length=20, default="", choices=GENDER_CHOICES)
-    rate = models.CharField(max_length=20, default="", choices=RATE_CHOICES)
+    gender = models.CharField(max_length=20, default="")
+    rate = models.CharField(max_length=20, default="")
     comment = models.TextField()
     recieve = models.BooleanField(default=False)
     contact = models.BooleanField(default=False)

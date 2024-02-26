@@ -1,9 +1,10 @@
+<!-- feedback_table.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment Details</title>
+    <title>Feedback Table</title>
 </head>
 <body>
     <nav>
@@ -14,30 +15,31 @@
             <li><a href="{% url "team" %}">Team</a></li>
         </ul>
     </nav>
-
-    <h1>Appointment Details</h1>
+    <h1>Feedback Table</h1>
     <table border="1">
         <thead>
             <tr>
-                <th>Patient Name</th>
-                <th>Contact</th>
-                <th>Email</th>
+                <th>Patient</th>
                 <th>Doctor</th>
                 <th>Date</th>
-                <th>Time</th>
-                <th>Description</th>
+                <th>Gender</th>
+                <th>Rate</th>
+                <th>Comment</th>
+                <th>Received</th>
+                
             </tr>
         </thead>
         <tbody>
-            {% for appointment in appointments %}
+            {% for feedback in feedbacks %}
             <tr>
-                <td>{{ appointment.patient_name }}</td>
-                <td>{{ appointment.patient_contact }}</td>
-                <td>{{ appointment.patient_email }}</td>
-                <td>{{ appointment.doctor_details }}</td>
-                <td>{{ appointment.appointment_date }}</td>
-                <td>{{ appointment.appointment_time }}</td>
-                <td>{{ appointment.description }}</td>
+                <td>{{ feedback.title }}</td>
+                <td>{{ feedback.doctor }}</td>
+                <td>{{ feedback.date }}</td>
+                <td>{{ feedback.gender }}</td>
+                <td>{{ feedback.rate }}</td>
+                <td>{{ feedback.comment }}</td>
+                <td>{{ feedback.recieve }}</td>
+               
             </tr>
             {% endfor %}
         </tbody>

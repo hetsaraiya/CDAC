@@ -96,23 +96,29 @@ def services_list(request):
 def register_doctor(request):
     if request.method == 'POST':
         doctor = Doctor()
-        doctor.name = request.POST.get('name')
+        doctor.name = request.POST.get('name')+" "+request.POST.get('last_name')
         doctor.speciality = request.POST.get('speciality')
         doctor.qualification = request.POST.get('qualification')
         doctor.profile = request.FILES.get('profile')
-        doctor.address = request.POST.get('address')
+        doctor.address = request.POST.get('city')+" "+request.POST.get('country')
         doctor.contact = request.POST.get('contact')
         doctor.email = request.POST.get('email')
+        doctor.profile = request.FILES.get('image')
         doctor.save()
+        return redirect('team')
 
 def feedback(request):
     if request.method == 'POST':
         feedback = Feedback()
-        feedback.title = request.POST.get('title')
-        feedback.doctor = request.POST.get('doctor')
+        feedback.title = request.POST.get('name')
+        doctor= request.POST.get('doctor_name')
         feedback.gender = request.POST.get('gender')
         feedback.rate = request.POST.get('rate')
-        feedback.comment = request.POST.get('comment')
-        feedback.recieve = request.POST.get('recieve')
-        feedback.contact = request.POST.get('contact')
+        feedback.comment = request.POST.get('comments')
+        feedback.recieve = True
+        feedback.rate=request.POST.get('rating')
+        #feedback.contact = request.POST.get('contact')
+        feedback.doctor = Doctor.objects.get(id=doctor)
+
         feedback.save()
+        return redirect('home')

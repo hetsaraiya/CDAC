@@ -1,93 +1,84 @@
-{% load static %}
+<!DOCTYPE html>
 <html>
 <head>
+    <title>Feedback Form</title>
 </head>
 <body>
-  
-  <div class="container">  
-    <form method="post" id="myform">  
-      <div class="row mb-3">  
-        <div class="col-md-12">  
-          <h2> Feedback Form</h2>
-        
-        </div>
-      </div>
-      <div class="row mb-3">  
-        <div class="col-md-6">  
-          <h3> <label for="event_name" class="form-label">Name:</label> 
-          <input type="text" name="event_name" id="event_name" class="form-control"/>
-        </div> <br>
- <div class="row mb-3">  
-        <div class="col-md-6">  
-          <h3> <label for="FullName" class="form-label">doctor name:</label>
-          <input type="text" name="FullName" id="FullName" placeholder="" required="required" class="form-control"/>
-        </div> <br>
-<div>
-
-<div class="col-md-6">  
-        <h3>   <label for="event_date" class="form-label">feedback Date:</label>
-          <input type="date" class="form-control" name="event_date" id="event_date"/>
-        </div> <br>
-      </div>
-
-      
-      <div>
-	<h3> Gender </h3>
-	<input type="radio" name="gender" value="male"> Male <br>
-	<input type="radio"  name="gender value="female"> Female </br>
-</div> <br>
-     
-      </div>
-      <div class="row mb-3">  
-        <div class="col-md-12">  
-          <h3> <label>How would you rate the overall event experience?</label>
-          <div class="d-flex flex-wrap">  
-            <div class="form-check form-check-inline me-3">  
-              <input class="form-check-input" type="radio" name="rating" id="rating_bad" value="bad">
-  <label class="form-check-label" for="rating_bad">
-    Bad
-  </label>
+<div class="container">  
+    <form action="{% url "api:feedback" %}" method="post" id="myform">  
+      {% csrf_token %}
+        <div class="row mb-3">  
+            <div class="col-md-12">  
+                <h2>Feedback Form</h2>
             </div>
- <div class="form-check mx-3">
-  <input class="form-check-input" type="radio" name="rating" id="rating_good" value="good">
-  <label class="form-check-label" for="rating_good">
-    Good
-  </label>
-  </div>
-<div class="form-check mx-3">
-  <input class="form-check-input"  type="radio" name="rating" id="rating_excellent" value="excellent">
-  <label class="form-check-label" for="rating_excellent">
-    Excellent!
-  </label>
-  </div> <br>
-   
-     <div class="mb-4">
-  <label class="form-label"  for="feedback_comments">Comments:</label>
-  <textarea class="form-control" required rows="6" name="comments" id="feedback_comments" ></textarea>
-</div> <br>
-     <div class="row mb-3">  
-        <div class="col-md-6 d-flex align-items-center">  
-          <div>  
-            <input type="checkbox" class="form-check-input" name="notify_future_events" id="notify_future_events"/>
-            <label for="notify_future_events" class="form-check-label">Would you like to be notified about future events?</label>
-          </div> <br>
         </div>
-      </div>
-      <div class="row mb-3">  
-        <div class="col-md-6 d-flex align-items-center">  
-          <div>  
-            <input type="checkbox" class="form-check-input" name="can_follow_up" id="can_follow_up"/>
-            <label for="can_follow_up" class="form-check-label">Can we contact you regarding your feedback for further clarification or follow-up?</label>
+        <div class="row mb-3">  
+            <div class="col-md-6">  
+                <h3><label for="event_name" class="form-label">Name:</label></h3>
+                <input type="text" name="name" id="event_name" class="form-control"/>
+            </div>
+        </div>
+        <div class="row mb-3">  
+          <div class="col-md-6">  
+              <h3><label for="doctor_name" class="form-label">Doctor Name:</label></h3>
+              <select name="doctor_name" id="doctor_name" class="form-select border-0" style="height: 55px;">
+                  <option selected disabled>Choose Doctor</option>
+                  {% for doctor in doctors %}
+                      <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                  {% endfor %}
+              </select>
           </div>
-        </div> <br>
       </div>
       <div class="row mb-3">  
-        <div class="col-md-6 d-flex align-items-center">  
-          <button class="btn btn-lg px-4" style="background-color:#007bff;border-color:#007bff;color:white;" type="submit">Submit</button>
+        <div class="col-md-6">  
+            <h3><label class="form-label">Rating:</label><br></h3>
+            <select name="rating" id="rating" class="form-select border-0" style="height: 55px;">
+                <option selected disabled>Choose Rating</option>
+                <option value="Poor">1 - Poor</option>
+                <option value="Fair">2 - Fair</option>
+                <option value="Average">3 - Average</option>
+                <option value="Good">4 - Good</option>
+                <option value="Excellent">5 - Excellent</option>
+            </select>
         </div>
-      </div>
+    </div>
+        <div class="row mb-3">  
+            <div class="col-md-6">  
+                <h3><label for="event_date" class="form-label">Feedback Date:</label></h3>
+                <input type="date" class="form-control" name="feedback_date" id="event_date"/>
+            </div>
+        </div>
+        <div>
+            <h3>Gender</h3>
+            <input type="radio" name="gender" value="male" id="gender_male"> <label for="gender_male">Male</label><br>
+            <input type="radio" name="gender" value="female" id="gender_female"> <label for="gender_female">Female</label><br>
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="feedback_comments">Comments:</label>
+            <textarea class="form-control" required rows="6" name="comments" id="feedback_comments"></textarea>
+        </div>
+        <div class="row mb-3">  
+            <div class="col-md-6 d-flex align-items-center">  
+                <div>  
+                    <input type="checkbox" class="form-check-input" name="notify_future_events" id="notify_future_events"/>
+                    <label for="notify_future_events" class="form-check-label">Would you like to be notified about future events?</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">  
+            <div class="col-md-6 d-flex align-items-center">  
+                <div>  
+                    <input type="checkbox" class="form-check-input" name="can_follow_up" id="can_follow_up"/>
+                    <label for="can_follow_up" class="form-check-label">Can we contact you regarding your feedback for further clarification or follow-up?</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">  
+            <div class="col-md-6 d-flex align-items-center">  
+                <button class="btn btn-lg px-4" style="background-color:#007bff;border-color:#007bff;color:white;" type="submit">Submit</button>
+            </div>
+        </div>
     </form>
-  </div>
-
+</div>
 </body>
 </html>
