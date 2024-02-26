@@ -1,0 +1,116 @@
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- <title>Formicon-Flat Forms Pack</title> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{% static "icons/styles.css" %}">
+		<link rel="stylesheet" href="{% static "css/bootstrap-custom.css" %}">
+		<link rel="stylesheet" href="{% static "css/registration-form.css" %}">
+
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600' rel='stylesheet' type='text/css'>
+		
+	</head>
+	<body>
+		<!-- Register Form -->
+		<div class="form-wrapper"> <!-- Form-wrapper only for positioning -->
+			<form action="/php" method="post" class="fcorn-register container">
+				 <h1><p class="register-info"> Doctor form </p> </h1>
+				<div class="row">
+					<label for="event_name" class="form-label">Name:</label> 
+					<p class="col-md-6"><input type="text" placeholder="First Name" required></p>
+					<label for="event_name" class="form-label">last Name:</label> 
+					<p class="col-md-6"><input type="text" placeholder="Last Name" required></p>
+				</div>
+				 <label for="event_name" class="form-label">Email:</label> 
+				 <p><input type="email" placeholder="Email Address" required>
+				   <!-- <span class="extern-type">We'll keep this private.</span> -->
+				</p>
+				<h3> <label for="event_name" class="form-label">password:</label> </h3>
+				<p><input type="password" placeholder="Password" required>
+					<!-- <span class="extern-type">Atleast 8 characters long.</span>  -->
+				</p>
+				 <label for="event_name" class="form-label">Verify password:</label> 
+				<p><input type="password" placeholder="Verify Password" required></p>
+				<div class="col-md-6">  
+					<h3>   <label for="event_date" class="form-label">Date:</label>
+					  <input type="date" class="form-control" name="event_date" id="event_date"/>
+					</div> <br>
+				  </div>
+				<!-- <div class="row">
+					
+					<p class="col-md-4"><input type="text" placeholder="Date (dd)" required></p>
+					<p class="col-md-4"><input type="text" placeholder="Month (mm)" required></p>
+					<p class="col-md-4"><input type="text" placeholder="Year (yyyy)" required></p>
+				</div> -->
+				<div class="row">
+					<p class="col-md-6 city-wrap">
+						<label for="event_date" class="form-label">City:</label>
+						<select>
+							<option value="0" selected disabled>City</option>
+							<option value="1">Gandhinagar</option>
+							<option value="1">Ahmdabad</option>
+							<option value="1">Surat</option>
+							<option value="1">Rajkot</option>
+						</select>
+					</p>
+					<p class="col-md-6 country-wrap">
+						<!-- Add more country name -->
+						<label for="event_date" class="form-label">Country:</label>
+						<select>
+							<option value="0" selected disabled>Country</option>
+							<option value="1">India</option>
+							<option value="2">Canada</option>
+							<option value="2">USA</option>
+							<option value="2">UK</option>
+					    </select>
+					</p>
+          <p class="col-md-6 specialty-wrap">
+			<label for="event_date" class="form-label">Specialty:</label>
+						<select>
+							<option value="0" selected disabled>Specialty</option>
+							<option value="1">cardiology</option>
+							<option value="1">pulmonary</option>
+							<option value="1">Neurology</option>
+							<option value="1">Orthopedics</option>
+							<option value="1">Dental surgery</option>
+							<option value="1">Loboratory</option>
+						</select>
+            <!-- <p class="col-md-6 language-wrap"> 
+						<select>
+							<option value="0" selected disabled>Language</option>
+							<option value="1">English</option>
+
+						</select> -->
+               <!-- <span class="extern-type">Proficient languages.</span>
+					</p> -->
+          <!-- <p class="col-md-4"><input type="text" placeholder="Medical school" required><span class="extern-type"></p>
+          
+          <p class="col-md-4"><input type="text" placeholder="Medical ID" required></p>
+           -->
+          
+          
+          
+          <!-- <p class="col-md-6"><form action="upload.php" method="post" enctype="multipart/form-data">
+            Upload your medical ID:
+              <input type="file" name="fileToUpload" id="fileToUpload">
+              <input type="submit" value="Upload Image" name="submit" required>
+           </p>  -->
+          
+          
+          <!-- <p class="col-md-6"><form action="upload.php" method="post" enctype="multipart/form-data">
+            Upload your personal photo:
+			
+    		  <input type="file" name="fileToUpload" id="fileToUpload">
+              <input type="submit" value="Upload Image" name="submit" required>
+	
+              <span class="extern-type">Professional clothing required.</span> 
+           </p>
+           -->
+      
+	<p class="register-submit"><input type="submit" value="Register Now"></p>
+
+
+
+	</body>
+</html>

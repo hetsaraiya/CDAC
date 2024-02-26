@@ -49,3 +49,15 @@ def newindex(request):
 
 def base(request):
     return render(request,'base.html')
+
+def doctor(request):
+    return render(request,'doctor.html')
+
+def payment(request):
+    return render(request,'payment.html')
+
+def feedback(request):
+    return render(request,'feedback.html')
+
+def admin(request):
+    return render(request,'admin.html')

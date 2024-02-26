@@ -36,6 +36,10 @@ urlpatterns = [
     path("registration/",views.registeration,name="registeration"),
     path("login/",views.login,name="login"),
     path("detail/",views.detail,name="detail"),
+    path("doctor/",views.doctor,name="doctor"),
+    path("payment/",views.payment,name="payment"),
+    path("feedback/",views.feedback,name="feedback"),
+    path("admin/",views.admin,name="admin"),
     # path("newindex/",views.newindex,name="newindex"),
     # path("base/",views.base,name="base"),
 
