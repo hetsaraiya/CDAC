@@ -59,3 +59,19 @@ class Feedback(models.Model):
     contact = models.BooleanField(default=False)
     def __str__(self):
         return self.title
+    
+class Payments(models.Model):
+    full_name = models.CharField(max_length=30, default="")
+    email = models.EmailField()
+    address = models.TextField(default="")
+    city = models.CharField(max_length=10, default="")
+    name_on_card = models.CharField(max_length=30,default="")
+    credit_card_number = models.IntegerField()
+    exp_month = models.CharField(max_length=10, default="")
+    state = models.CharField(max_length=30, default="")
+    zip_code = models.IntegerField()
+    exp_year = models.IntegerField()
+    cvv = models.IntegerField()
+
+    def __str__(self):
+        return self.full_name

@@ -160,3 +160,27 @@ def adminforgotpassword(request):
             return redirect('admin')
         else:
             return HttpResponse("User not found go back and regiter your self again with new credentials")            
+        
+
+def payment(request):
+    if request.method == 'POST':
+        payment = Payments()
+        payment.full_name = request.POST.get('name')
+        payment.email = request.POST.get('email')
+        payment.address = request.POST.get('address')
+        payment.city = request.POST.get('city')
+        payment.name_on_card = request.POST.get('cardName')
+        payment.credit_card_number = request.POST.get('cardNum')
+        payment.exp_month = request.POST.get('exp_month')
+        payment.state = request.POST.get('state')
+        payment.zip_code = request.POST.get('zip')
+        payment.exp_year = request.POST.get('exp_year')
+        payment.cvv = request.POST.get('cvv')
+
+        print(payment.cvv)
+        print("done pay")
+
+        payment.save()
+        return render(request, 'payment.html')
+    else:
+        return render(request, 'payment.html')

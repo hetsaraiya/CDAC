@@ -14,4 +14,5 @@ urlpatterns = [
     path("feedback/", views.feedback, name="feedback"),
     path("forgotpassword/", views.forgotpassword, name="forgotpassword"),
     path("adminforgotpassword/", views.adminforgotpassword, name="adminforgotpassword"),
+    path("payment", views.payment, name="payment")
 ]
