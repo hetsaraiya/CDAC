@@ -21,11 +21,15 @@ class ServicesAdmin(ExportActionMixin, admin.ModelAdmin):
 
 class FeedbackAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ('id','title', )
-    search_fields = ['id','title', ]           
+    search_fields = ['id','title', ]      
+
+class PaymentsAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ('id','full_name', 'name_on_card', 'name_on_card', )
+    search_fields = ['id','full_name', 'name_on_card', 'name_on_card', ]         
 
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(Services, ServicesAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
-admin.site.register(Payments)
+admin.site.register(Payments,PaymentsAdmin)

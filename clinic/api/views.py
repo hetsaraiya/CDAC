@@ -181,6 +181,6 @@ def payment(request):
         print("done pay")
 
         payment.save()
-        return render(request, 'payment.html')
+        return HttpResponse("your payment done successfully") 
     else:
         return render(request, 'payment.html')
